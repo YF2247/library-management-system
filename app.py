@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+﻿from flask import Flask, render_template, request, redirect, url_for, session, flash
 import sqlite3
 from datetime import datetime, timedelta
 from functools import wraps
+import os
 
 app = Flask(__name__)
-app.secret_key = 'library-secret-key-2025'
+app.secret_key = os.environ.get('SECRET_KEY', 'library-secret-key-2025')
 
 def init_db():
     conn = sqlite3.connect('library.db')
@@ -36,6 +37,9 @@ def init_db():
         c.execute("INSERT INTO users VALUES (NULL, 'admin', 'admin123', 'admin', 'admin@library.com')")
     conn.commit()
     conn.close()
+
+# Initialize database on startup
+init_db()
 
 def get_db():
     conn = sqlite3.connect('library.db')
@@ -251,5 +255,4 @@ def reports():
     return render_template('reports.html', popular_books=popular, recent_activity=recent)
 
 if __name__ == '__main__':
-    init_db()
     app.run(debug=True)
