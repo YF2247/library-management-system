@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Reports</h2>
+<div class="row">
+    <div class="col-md-6">
+        <h4>Popular Books</h4>
+        <table class="table table-sm">
+            <thead><tr><th>Title</th><th>Author</th><th>Issues</th></tr></thead>
+            <tbody>
+                {% for book in popular_books %}
+                <tr><td>{{ book.title }}</td><td>{{ book.author }}</td><td>{{ book.cnt }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h4>Recent Activity</h4>
+        <table class="table table-sm">
+            <thead><tr><th>User</th><th>Book</th><th>Issue Date</th><th>Status</th></tr></thead>
+            <tbody>
+                {% for activity in recent_activity %}
+                <tr>
+                    <td>{{ activity.username }}</td>
+                    <td>{{ activity.title }}</td>
+                    <td>{{ activity.issue_date }}</td>
+                    <td><span class="badge bg-{% if activity.return_date %}success{% else %}warning{% endif %}">{% if activity.return_date %}Returned{% else %}Issued{% endif %}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

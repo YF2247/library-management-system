@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Users</h2>
+<table class="table table-striped">
+    <thead>
+        <tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.user_id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td><span class="badge bg-info">{{ user.role }}</span></td>
+            <td>
+                {% if user.user_id != session.user_id %}
+                <a href="{{ url_for('delete_user', user_id=user.user_id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">Delete</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

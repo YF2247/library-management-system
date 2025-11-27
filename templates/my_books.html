@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">My Issued Books</h2>
+<table class="table table-striped">
+    <thead>
+        <tr><th>Title</th><th>Author</th><th>Issue Date</th><th>Due Date</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+        {% for book in issued_books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.issue_date }}</td>
+            <td>{{ book.due_date }}</td>
+            <td><a href="{{ url_for('return_book', issue_id=book.issue_id) }}" class="btn btn-sm btn-primary">Return</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

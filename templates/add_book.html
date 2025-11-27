@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Add Book</h2>
+<div class="row">
+    <div class="col-md-6">
+        <form method="POST">
+            <div class="mb-3">
+                <label>Title</label>
+                <input type="text" class="form-control" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label>Author</label>
+                <input type="text" class="form-control" name="author" required>
+            </div>
+            <div class="mb-3">
+                <label>Category</label>
+                <input type="text" class="form-control" name="category" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Book</button>
+            <a href="{{ url_for('books') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
