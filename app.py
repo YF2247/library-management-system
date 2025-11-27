@@ -32,9 +32,61 @@ def init_db():
         fine DECIMAL(10,2) DEFAULT 0,
         FOREIGN KEY (book_id) REFERENCES books(book_id),
         FOREIGN KEY (user_id) REFERENCES users(user_id))''')
+    
+    # Insert default admin
     c.execute("SELECT * FROM users WHERE username='admin'")
     if not c.fetchone():
         c.execute("INSERT INTO users VALUES (NULL, 'admin', 'admin123', 'admin', 'admin@library.com')")
+    
+    # Check if books already exist
+    c.execute("SELECT COUNT(*) as count FROM books")
+    book_count = c.fetchone()[0]
+    
+    # If no books exist, add sample books
+    if book_count == 0:
+        sample_books = [
+            # Self-Help Books
+            ("Atomic Habits", "James Clear", "Self-Help"),
+            ("The 7 Habits of Highly Effective People", "Stephen Covey", "Self-Help"),
+            ("How to Win Friends and Influence People", "Dale Carnegie", "Self-Help"),
+            ("The Power of Now", "Eckhart Tolle", "Self-Help"),
+            ("Think and Grow Rich", "Napoleon Hill", "Self-Help"),
+            ("The Subtle Art of Not Giving a F*ck", "Mark Manson", "Self-Help"),
+            ("You Are a Badass", "Jen Sincero", "Self-Help"),
+            ("The Four Agreements", "Don Miguel Ruiz", "Self-Help"),
+            ("Mindset: The New Psychology of Success", "Carol Dweck", "Self-Help"),
+            ("Daring Greatly", "Brené Brown", "Self-Help"),
+            ("The Miracle Morning", "Hal Elrod", "Self-Help"),
+            ("Can't Hurt Me", "David Goggins", "Self-Help"),
+            ("The Alchemist", "Paulo Coelho", "Self-Help"),
+            ("Man's Search for Meaning", "Viktor Frankl", "Self-Help"),
+            ("The 5 AM Club", "Robin Sharma", "Self-Help"),
+            
+            # Financial Literacy Books
+            ("Rich Dad Poor Dad", "Robert Kiyosaki", "Financial Literacy"),
+            ("The Total Money Makeover", "Dave Ramsey", "Financial Literacy"),
+            ("The Intelligent Investor", "Benjamin Graham", "Financial Literacy"),
+            ("The Millionaire Next Door", "Thomas Stanley", "Financial Literacy"),
+            ("Your Money or Your Life", "Vicki Robin", "Financial Literacy"),
+            ("The Richest Man in Babylon", "George Clason", "Financial Literacy"),
+            ("I Will Teach You to Be Rich", "Ramit Sethi", "Financial Literacy"),
+            ("The Simple Path to Wealth", "JL Collins", "Financial Literacy"),
+            ("Money Master the Game", "Tony Robbins", "Financial Literacy"),
+            ("The Psychology of Money", "Morgan Housel", "Financial Literacy"),
+            ("Broke Millennial", "Erin Lowry", "Financial Literacy"),
+            ("The Automatic Millionaire", "David Bach", "Financial Literacy"),
+            ("Unshakeable", "Tony Robbins", "Financial Literacy"),
+            ("The Little Book of Common Sense Investing", "John Bogle", "Financial Literacy"),
+            ("Financial Freedom", "Grant Sabatier", "Financial Literacy"),
+            ("The Index Card", "Helaine Olen", "Financial Literacy"),
+            ("Get Good with Money", "Tiffany Aliche", "Financial Literacy")
+        ]
+        
+        for title, author, category in sample_books:
+            c.execute("INSERT INTO books VALUES (NULL, ?, ?, ?, 'Available')", (title, author, category))
+        
+        print(f" Added {len(sample_books)} sample books to the database")
+    
     conn.commit()
     conn.close()
 
