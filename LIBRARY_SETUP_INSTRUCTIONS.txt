@@ -1,0 +1,34 @@
+﻿===========================================
+LIBRARY MANAGEMENT SYSTEM - COMPLETE SETUP
+===========================================
+
+The project has been created at:
+C:\Users\owusu\Documents\LibraryManagementSystem
+
+STEP 1: Navigate to the project folder
+---------------------------------------
+cd C:\Users\owusu\Documents\LibraryManagementSystem
+
+STEP 2: Install Flask
+----------------------
+pip install flask
+
+STEP 3: Create project structure
+---------------------------------
+You need to create these folders:
+- templates
+- static
+
+STEP 4: Run the application
+----------------------------
+python app.py
+
+STEP 5: Access the system
+--------------------------
+Open browser: http://127.0.0.1:5000
+Default login: admin / admin123
+
+ALL CODE FILES ARE READY IN:
+C:\Users\owusu\Documents\LibraryManagementSystem
+
+I will now create a Python script to generate all files automatically.

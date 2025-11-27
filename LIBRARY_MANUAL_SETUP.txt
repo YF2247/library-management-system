@@ -1,0 +1,29 @@
+﻿================================================================================
+LIBRARY MANAGEMENT SYSTEM - MANUAL SETUP GUIDE
+================================================================================
+
+STEP 1: Create the project folder
+----------------------------------
+1. Open File Explorer
+2. Navigate to: C:\Users\owusu\Documents
+3. You'll see a folder called 'LibraryManagementSystem' already created
+4. Inside it, create two folders:
+   - templates
+   - static
+
+STEP 2: Install Flask
+----------------------
+Open Command Prompt or PowerShell and run:
+   pip install flask
+
+STEP 3: Create the files
+-------------------------
+Create these files by copying the code below into each file.
+Use Notepad, VS Code, or any text editor.
+
+================================================================================
+FILE 1: app.py (Main application file)
+================================================================================
+Save this in: C:\Users\owusu\Documents\LibraryManagementSystem\app.py
+
+--- COPY BELOW THIS LINE ---
